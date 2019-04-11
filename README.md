@@ -4,4 +4,5 @@ Start
 
 ```bash
 yarn start
+docker-compose up
 ```

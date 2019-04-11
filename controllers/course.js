@@ -13,17 +13,15 @@ exports.course_details = function (req, res, next) {
 };
 
 exports.course_departments = (req, res, next) => {
-    Course.find({}, '_id, name').then(courses => {
-        res.json({
-            departments: [...new Set(courses.map(c => (c._id.split('_')[0])))]
-        });
+    Course.find({}).then(courses => {
+        res.json([...new Set(courses.map(c => (c._id.split('_')[0])))]);
     }).catch(next);
 };
 
 exports.department_courses = (req, res, next) => {
     Course.find({
         _id: new RegExp(req.query.id, 'i')
-    }).then(course =>
+    }, 'name sections').then(course =>
         res.json(course)
     ).catch(next);
 }
