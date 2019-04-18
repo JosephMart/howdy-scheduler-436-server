@@ -8,10 +8,13 @@ const instructor = require('./routes/instructors');
 const course = require('./routes/course');
 const app = express();
 
+// require('dotenv').config();
+
 
 // Set up mongoose connection
 const mongoose = require('mongoose');
 const dev_db_url = 'mongodb://localhost:27017/howdy';
+console.log(process.env.DEV);
 const mongoDB = process.env.MONGODB_URI || dev_db_url;
 mongoose.connect(mongoDB, {
     useNewUrlParser: true
